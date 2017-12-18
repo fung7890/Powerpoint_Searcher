@@ -10,13 +10,14 @@ import tkinter.scrolledtext as tkst
 directoryPath = ''
 text_runs = []
 
+print("loading...")
+
 def findWord(filePath):
     search = searchWord.get()
     prs = Presentation(filePath)
     found = 0
     foundInFile = []
     foundSlides = []
-    foundInFile.append([os.path.basename(os.path.dirname(filePath)), os.path.basename(filePath), filePath])
     
     for count, slide in enumerate(prs.slides, 1):
         for shape in slide.shapes:
@@ -29,6 +30,7 @@ def findWord(filePath):
                         found = 1
 
     if found == 1:
+        foundInFile.append([os.path.basename(os.path.dirname(filePath)), os.path.basename(filePath), filePath])    
         foundInFile.append(foundSlides)
         text_runs.append(foundInFile)
 
