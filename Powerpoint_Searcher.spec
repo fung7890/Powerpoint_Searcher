@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Powerpoint_Searcher.py'],
-             pathex=['C:\\Users\\KFung\\Desktop\\ppt_search'],
+             pathex=['C:\\Users\\KFung\\Desktop\\Powerpoint Searcher'],
              binaries=[],
              datas=[],
              hiddenimports=[],

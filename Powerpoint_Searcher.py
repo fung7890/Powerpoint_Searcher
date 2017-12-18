@@ -13,16 +13,25 @@ text_runs = []
 def findWord(filePath):
     search = searchWord.get()
     prs = Presentation(filePath)
-
+    found = 0
+    foundInFile = []
+    foundSlides = []
+    foundInFile.append([os.path.basename(os.path.dirname(filePath)), os.path.basename(filePath), filePath])
+    
     for count, slide in enumerate(prs.slides, 1):
         for shape in slide.shapes:
             if not shape.has_text_frame:
                 continue
             for paragraph in shape.text_frame.paragraphs:
-                for run in paragraph.runs:
-                    
+                for run in paragraph.runs:             
                     if search.lower() in run.text.lower():
-                        text_runs.append([run.text, count, os.path.basename(os.path.dirname(filePath)), os.path.basename(filePath), filePath])
+                        foundSlides.append(count)
+                        found = 1
+
+    if found == 1:
+        foundInFile.append(foundSlides)
+        text_runs.append(foundInFile)
+
 
 def findFiles(path):
     #path = r'C:\Users\owner\Dropbox\Python\Projects\pptx_folder'
@@ -32,13 +41,17 @@ def findFiles(path):
         for file in files:
             filename, file_ext = os.path.splitext(file)
 
+            if "~$" in filename:                             # account for currently opened files; the unopened version is still accounted for thus still searched through   
+                continue
             if file_ext == ".pptx":               
                 all_files.append((os.path.join(dir, file)))
+                
         
         if len(subdir) > 0 and subDirectory.get():
             del subdir[:]
 
     return all_files
+
 
 def main():
     global textBox
@@ -46,9 +59,9 @@ def main():
     text_runs.clear()
     for i in findFiles(directoryPath):
         findWord(i)
+
     output(text_runs)
 
-    
 
 root = tk.Tk()
 root.title("Powerpoint Searcher")
@@ -70,14 +83,16 @@ def output(text_runs):
     global textBox
     textBox.delete('1.0', END)
     for count, found in enumerate(text_runs):
-        textBox.insert('1.0', "SLIDE: " + str(found[1]) + " "*5 + " FILE: " + found[3] + " "*5 + " FOLDER: " + found[2], count)
+        textBox.insert('1.0',"SLIDES: " + str(found[1]) + " "*5 + " FILE: " + found[0][1] + " "*5 + " FOLDER: " + found[0][0], count)
         textBox.insert('1.0', '\n')
         textBox.tag_config(count, foreground="blue", font="calibri")
         textBox.tag_bind(count, "<ButtonRelease-1>", lambda event, i=found: startApp(Event, i))
+        textBox.update_idletasks()
+     
     textBox.config(state=DISABLED)
 
 def startApp(event, found):
-    os.startfile(found[4])
+    os.startfile(found[0][2])
 
 
 
