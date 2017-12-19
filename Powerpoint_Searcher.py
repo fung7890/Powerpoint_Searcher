@@ -6,6 +6,7 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import filedialog
 import tkinter.scrolledtext as tkst
+import win32com.client  
 
 directoryPath = ''
 text_runs = []
@@ -38,13 +39,18 @@ def findWord(filePath):
 def findFiles(path):
     #path = r'C:\Users\owner\Dropbox\Python\Projects\pptx_folder'
     all_files = []
-    for dir, subdir, files in os.walk(path):
 
+    checkPpt(path)
+
+    for dir, subdir, files in os.walk(path):
+        
         for file in files:
             filename, file_ext = os.path.splitext(file)
 
+            print("working")
             if "~$" in filename:                             # account for currently opened files; the unopened version is still accounted for thus still searched through   
                 continue
+
             if file_ext == ".pptx":               
                 all_files.append((os.path.join(dir, file)))
                 
@@ -54,6 +60,24 @@ def findFiles(path):
 
     return all_files
 
+# python-pptx library cannot inherently process .ppt ext files, need to convert to .pptx
+def checkPpt(path):
+    for dir, subdir, files in os.walk(path):
+        
+        for file in files:
+            filename, file_ext = os.path.splitext(file)
+        
+            if file_ext == ".ppt" and not (os.path.isfile((os.path.join(dir, filename))+".pptx")):           
+                convert((os.path.join(dir, file)), (os.path.join(dir, filename)))
+
+# convert from .ppt ext to .pptx
+def convert(convertFullPath, filePath):                     
+    Application = win32com.client.Dispatch("PowerPoint.Application")
+    Application.Visible = True
+    Presentation = Application.Presentations.Open(convertFullPath)
+    Presentation.Saveas(filePath + ".pptx")
+    Presentation.Close()
+    Application.Quit()
 
 def main():
     global textBox

@@ -1,8 +1,8 @@
+missing module named 'win32com.gen_py' - imported by win32com, c:\users\kfung\anaconda3\envs\py35\lib\site-packages\PyInstaller\loader\rthooks\pyi_rth_win32comgenpy.py
 missing module named resource - imported by posix, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named posix - imported by os, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named _posixsubprocess - imported by subprocess, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named 'org.python' - imported by pickle, xml.sax, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
-missing module named ce - imported by os, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named readline - imported by cmd, code, pdb, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
@@ -13,8 +13,9 @@ missing module named 'java.lang' - imported by platform, xml.sax._exceptions, C:
 missing module named vms_lib - imported by platform, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named termios - imported by tty, getpass, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named grp - imported by tarfile, shutil, pathlib, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
-missing module named _dummy_threading - imported by dummy_threading, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named pwd - imported by posixpath, tarfile, shutil, http.server, webbrowser, pathlib, netrc, getpass, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
+missing module named ce - imported by os, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
+missing module named _dummy_threading - imported by dummy_threading, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named org - imported by copy, C:\Users\KFung\Desktop\Powerpoint Searcher\Powerpoint_Searcher.py
 missing module named Tkinter - imported by PIL.ImageTk
 missing module named 'PySide.QtCore' - imported by PIL.ImageQt
